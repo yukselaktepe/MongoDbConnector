@@ -5,7 +5,7 @@ namespace MongoDbConnector.Model
 {
     public class Category : Base
     {
-        public string KategoriName { get; set; }
-        public string KategoriDesc { get; set; }
+        public string Name { get; set; }
+        public string Desc { get; set; }
     }
 }

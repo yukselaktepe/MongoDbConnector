@@ -27,8 +27,8 @@ namespace MongoDbConnector
         {
             Category category = new Category()
             {
-                KategoriName = "Bilgisayar",
-                KategoriDesc = "Bilgisayar Ürünleri"
+                Name = "Bilgisayar",
+                Desc = "Bilgisayar Ürünleri"
             };
 
             connector.Save(category);
@@ -36,9 +36,9 @@ namespace MongoDbConnector
 
         static void GetPageCriteriaAndUpdate()
         {
-            var category = (connector.GetPageCriteria(x => x.KategoriName == "Bilgisayar") as List<Category>).FirstOrDefault();
-            category.KategoriName = "Telefon";
-            category.KategoriDesc = "Telefon Açıklama";
+            var category = (connector.GetPageCriteria(x => x.Name == "Bilgisayar") as List<Category>).FirstOrDefault();
+            category.Name = "Telefon";
+            category.Desc = "Telefon Açıklama";
             connector.UpdateModel(category);
         }
 
@@ -71,8 +71,8 @@ namespace MongoDbConnector
             var model = new Category()
             {
                 Id = new ObjectId(),
-                KategoriName = "Test Kategori",
-                KategoriDesc = "Desc"
+                Name = "Test Kategori",
+                Desc = "Desc"
             };
 
             var result = connector.Exists(model);
@@ -82,7 +82,7 @@ namespace MongoDbConnector
 
         static void GetId()
         {
-            var result = connector.GetId(x => x.KategoriName == "Bilgisayar");
+            var result = connector.GetId(x => x.Name == "Bilgisayar");
             Console.WriteLine(result);
             Console.ReadLine();
 
