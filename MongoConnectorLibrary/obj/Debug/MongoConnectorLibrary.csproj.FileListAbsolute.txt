@@ -1,0 +1,17 @@
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\bin\Debug\MongoConnectorLibrary.dll
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\bin\Debug\MongoConnectorLibrary.pdb
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\bin\Debug\DnsClient.dll
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\bin\Debug\MongoDB.Bson.dll
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\bin\Debug\MongoDB.Driver.Core.dll
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\bin\Debug\MongoDB.Driver.dll
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\bin\Debug\MongoDB.Driver.Legacy.dll
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\bin\Debug\System.Buffers.dll
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\bin\Debug\DnsClient.xml
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\bin\Debug\MongoDB.Bson.xml
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\bin\Debug\MongoDB.Driver.xml
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\bin\Debug\MongoDB.Driver.Core.xml
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\bin\Debug\MongoDB.Driver.Legacy.xml
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\obj\Debug\MongoConnectorLibrary.csproj.CoreCompileInputs.cache
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\obj\Debug\MongoConnectorLibrary.csproj.CopyComplete
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\obj\Debug\MongoConnectorLibrary.dll
+D:\Projeler\MongoDbConnector\MongoConnectorLibrary\obj\Debug\MongoConnectorLibrary.pdb

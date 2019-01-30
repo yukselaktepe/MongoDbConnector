@@ -1,0 +1,2 @@
+D:\Projeler\MongoDbConnector\MongoDbConnectorConsole\obj\Debug\MongoDbConnectorConsole.csprojAssemblyReference.cache
+D:\Projeler\MongoDbConnector\MongoDbConnectorConsole\obj\Debug\MongoDbConnectorConsole.csproj.CoreCompileInputs.cache
