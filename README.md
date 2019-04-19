@@ -67,8 +67,8 @@ using Newtonsoft.Json;
         {
             Category category = new Category()
             {
-                KategoriName = "Bilgisayar",
-                KategoriDesc = "Bilgisayar Ürünleri"
+                Name = "Bilgisayar",
+                Desc = "Bilgisayar Ürünleri"
             };
 
             connector.Save(category);
