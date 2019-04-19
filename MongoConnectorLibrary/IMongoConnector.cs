@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 
@@ -11,23 +12,23 @@ namespace MongoConnectorLibrary
         /// <summary>
         /// Verilen değer kadar kayıt getirir
         /// </summary>
-        object GetCollection(int count = 0);
+        List<T> GetCollection(int count = 0);
         /// <summary>
         /// Sayfalama
         /// </summary>
-        object GetPage(int skip, int count);
+        List<T> GetPage(int skip, int count);
         /// <summary>
         /// Verilen criteria ve count göre belirtilen selector'ü getirir.
         /// </summary>
-        object GetPageCriteriaSelector(Expression<Func<T, bool>> criteria, Expression<Func<T, T>> selector, int count = 0);
+        List<T> GetPageCriteriaSelector(Expression<Func<T, bool>> criteria, Expression<Func<T, T>> selector, int count = 0);
         /// <summary>
         /// Verilen count'a göre selector u getirir.
         /// </summary>
-        object GetPageSelector(Expression<Func<T, bool>> selector, int count = 0);
+        List<T> GetPageSelector(Expression<Func<T, bool>> selector, int count = 0);
         /// <summary>
         /// verilen criteria'a göre skip de belirtilen sayıdan sonrasında belirtiken count kadar veri getirir.
         /// </summary>
-        object GetPageCriteria(Expression<Func<T, bool>> criteria, int count = 0, int skip = 0);
+        List<T> GetPageCriteria(Expression<Func<T, bool>> criteria, int count = 0, int skip = 0);
         /// <summary>
         /// skip de belirtilen sayıdan sonrasında belirtiken count kadar veri getirir.
         /// </summary>
@@ -35,7 +36,7 @@ namespace MongoConnectorLibrary
         /// <param name="count"></param>
         /// <param name="skip"></param>
         /// <returns></returns>
-        object GetPageList(int count = 0, int skip = 0);
+        List<T> GetPageList(int count = 0, int skip = 0);
         bool UpdateModel(T model);
         bool Save(T model);
         bool Delete(T model);

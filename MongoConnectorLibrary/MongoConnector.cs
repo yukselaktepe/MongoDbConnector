@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -21,105 +22,108 @@ namespace MongoConnectorLibrary
         /// <summary>
         /// Verilen değer kadar kayıt getirir
         /// </summary>
-        public object GetCollection(int count = 0)
+        public List<T> GetCollection(int count = 0)
         {
-            object colection;
+            List<T> returnValue = new List<T>();
+
             try
             {
                 if (count != 0)
-                    colection = mongodb.GetCollection<T>(typeof(T).Name).FindAll().SetLimit(count).ToList<T>();
+                    returnValue = mongodb.GetCollection<T>(typeof(T).Name).FindAll().SetLimit(count).ToList<T>();
                 else
-                    colection = mongodb.GetCollection<T>(typeof(T).Name).FindAll().ToList<T>();
+                    returnValue = mongodb.GetCollection<T>(typeof(T).Name).FindAll().ToList<T>();
             }
             catch (Exception ex)
             {
-                colection = ex.Message;
+                throw ex;
             }
-            return colection;
+            return returnValue;
         }
 
         /// <summary>
         /// Sayfalama
         /// </summary>
-        public object GetPage(int skip, int count)
+        public List<T> GetPage(int skip, int count)
         {
-            object colection;
+            List<T> returnValue = new List<T>();
             try
             {
-                colection = mongodb.GetCollection<T>(typeof(T).Name).FindAll().Skip(skip).Take(count).ToList<T>();
+                returnValue = mongodb.GetCollection<T>(typeof(T).Name).FindAll().Skip(skip).Take(count).ToList<T>();
             }
             catch (Exception ex)
             {
-                colection = ex.Message;
+                throw ex;
             }
-            return colection;
+            return returnValue;
         }
 
         /// <summary>
         /// Verilen criteria ve count göre belirtilen selector'ü getirir.
         /// </summary>
-        public object GetPageCriteriaSelector(Expression<Func<T, bool>> criteria, Expression<Func<T, T>> selector, int count = 0)
+        public List<T> GetPageCriteriaSelector(Expression<Func<T, bool>> criteria, Expression<Func<T, T>> selector, int count = 0)
         {
-            object colection;
+            List<T> returnValue = new List<T>();
             try
             {
                 if (count != 0)
-                    colection = mongodb.GetCollection<T>(typeof(T).Name).FindAll().SetLimit(count).AsQueryable<T>().Where(criteria).Select(selector).ToList();
+                    returnValue = mongodb.GetCollection<T>(typeof(T).Name).FindAll().SetLimit(count).AsQueryable<T>().Where(criteria).Select(selector).ToList();
                 else
-                    colection = mongodb.GetCollection<T>(typeof(T).Name).FindAll().AsQueryable<T>().Where(criteria).Select(selector).ToList();
+                    returnValue = mongodb.GetCollection<T>(typeof(T).Name).FindAll().AsQueryable<T>().Where(criteria).Select(selector).ToList();
             }
             catch (Exception ex)
             {
-                colection = ex.Message;
+                throw ex;
             }
-            return colection;
+            return returnValue;
         }
 
         /// <summary>
         /// Verilen count'a göre selector u getirir.
         /// </summary>
-        public object GetPageSelector(Expression<Func<T, bool>> selector, int count = 0)
+        public List<T> GetPageSelector(Expression<Func<T, bool>> selector, int count = 0)
         {
-            object colection;
+            List<T> returnValue = new List<T>();
             try
             {
+               
                 if (count != 0)
-                    colection = mongodb.GetCollection<T>(typeof(T).Name).FindAll().SetLimit(count).AsQueryable<T>().Select(selector).ToList();
+                    returnValue = mongodb.GetCollection<T>(typeof(T).Name).FindAll().SetLimit(count).AsQueryable<T>().Select(selector).ToList() as List<T>;
                 else
-                    colection = mongodb.GetCollection<T>(typeof(T).Name).FindAll().AsQueryable<T>().Select(selector).ToList();
+                    returnValue = mongodb.GetCollection<T>(typeof(T).Name).FindAll().AsQueryable<T>().Select(selector).ToList() as List<T>;
+
             }
             catch (Exception ex)
             {
-                colection = ex.Message;
+                throw ex;
             }
 
-
-            return colection;
+            return returnValue;
         }
 
         /// <summary>
         /// verilen criteria'a göre skip de belirtilen sayıdan sonrasında belirtiken count kadar veri getirir.
         /// </summary>
-        public object GetPageCriteria(Expression<Func<T, bool>> criteria, int count = 0, int skip = 0)
+        public List<T> GetPageCriteria(Expression<Func<T, bool>> criteria, int count = 0, int skip = 0)
         {
-            object colection;
+            List<T> returnValue = new List<T>();
             try
             {
                 var col = mongodb.GetCollection<T>(typeof(T).Name);
                 if (count != 0 && skip != 0)
-                    colection = col.Find(Query<T>.Where(criteria)).SetSkip(skip).SetLimit(count).ToList();
+                    returnValue = col.Find(Query<T>.Where(criteria)).SetSkip(skip).SetLimit(count).ToList();
                 else if (count != 0 && skip == 0)
-                    colection = col.Find(Query<T>.Where(criteria)).SetLimit(count).ToList();
+                    returnValue = col.Find(Query<T>.Where(criteria)).SetLimit(count).ToList();
                 else if (count == 0 && skip != 0)
-                    colection = col.Find(Query<T>.Where(criteria)).SetSkip(skip).ToList();
+                    returnValue = col.Find(Query<T>.Where(criteria)).SetSkip(skip).ToList();
                 else
-                    colection = col.Find(Query<T>.Where(criteria)).ToList();
+                    returnValue = col.Find(Query<T>.Where(criteria)).ToList();
             }
             catch (Exception ex)
             {
-                colection = ex.Message;
+                throw ex;
             }
-            return colection;
+
+            return returnValue;
         }
 
         /// <summary>
@@ -129,20 +133,20 @@ namespace MongoConnectorLibrary
         /// <param name="count"></param>
         /// <param name="skip"></param>
         /// <returns></returns>
-        public object GetPageList(int count = 0, int skip = 0)
+        public List<T> GetPageList(int count = 0, int skip = 0)
         {
-            object colection;
+            List<T> returnValue = new List<T>();
             try
             {
                 var col = mongodb.GetCollection<T>(typeof(T).Name);
-                colection = col.Find(Query.Null).SetSkip(skip).SetLimit(count).ToList();
+                returnValue = col.Find(Query.Null).SetSkip(skip).SetLimit(count).ToList();
 
             }
             catch (Exception ex)
             {
-                colection = ex.Message;
+                throw ex;
             }
-            return colection;
+            return returnValue;
         }
         public bool UpdateModel(T model)
         {

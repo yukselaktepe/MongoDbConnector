@@ -36,7 +36,7 @@ namespace MongoDbConnector
 
         static void GetPageCriteriaAndUpdate()
         {
-            var category = (connector.GetPageCriteria(x => x.Name == "Bilgisayar") as List<Category>).FirstOrDefault();
+            var category = (connector.GetPageCriteria(x => x.Name == "Bilgisayar")).FirstOrDefault();
             category.Name = "Telefon";
             category.Desc = "Telefon Açıklama";
             connector.UpdateModel(category);
@@ -44,7 +44,7 @@ namespace MongoDbConnector
 
         static void GetCollection()
         {
-            var categories = connector.GetCollection() as List<Category>;
+            var categories = connector.GetCollection();
             string jsonStr = JsonConvert.SerializeObject(categories);
             Console.WriteLine(jsonStr);
             Console.ReadLine();
@@ -53,7 +53,7 @@ namespace MongoDbConnector
         static void DeleteModel()
         {
             ObjectId id = new ObjectId("5c41ba7c73a202e1e4695344");
-            var category = (connector.GetPageCriteria(x => x.Id == id) as List<Category>).FirstOrDefault();
+            var category = connector.GetPageCriteria(x => x.Id == id).FirstOrDefault();
             connector.Delete(category);
         }
 
